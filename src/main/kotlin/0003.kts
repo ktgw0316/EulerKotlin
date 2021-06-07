@@ -1,3 +1,5 @@
+import kotlin.math.sqrt
+
 // http://odz.sakura.ne.jp/projecteuler/?Problem+3
 
 // fun primeFactors(n: Long): List<Long> {
@@ -16,14 +18,12 @@
 // }
 
 fun isPrime(n: Long): Boolean {
-    val sq = Math.sqrt(n.toDouble()).toLong()
-    return (2..sq)
-        .filter { n % it == 0L }
-        .isEmpty()
+    val sq = sqrt(n.toDouble()).toLong()
+    return (2..sq).none { n % it == 0L }
 }
 
 fun primeFactors(n: Long): Sequence<Long> {
-    val sq = Math.sqrt(n.toDouble()).toLong()
+    val sq = sqrt(n.toDouble()).toLong()
     return (sq downTo 2)
         .asSequence()
         .filter { n % it == 0L }

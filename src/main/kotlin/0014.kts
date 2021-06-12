@@ -27,8 +27,7 @@ tailrec fun collatzLength(n: Long, curr: Int = 0): Int {
 assert(collatzLength(13L) == 10)
 assert(collatzLength(7L) == 17)
 
-println(
-    (1L until 1_000_000L)
-        .map { collatzLength(it) }
-        .maxOrNull()
-)
+(1L until 1_000_000L)
+    .map { it to collatzLength(it) }
+    .maxByOrNull { it.second }!!
+    .first

@@ -2,15 +2,16 @@
 
 import kotlin.math.sqrt
 
-fun isPrime(n: Int): Boolean {
-    val max = sqrt(n.toDouble()).toInt()
-    return (2..max).asSequence()
-        .filter { n % it == 0 }
+fun isPrime(n: Long): Boolean {
+    val max = sqrt(n.toDouble()).toLong()
+    return (2L..max).asSequence()
+        .filter { n % it == 0L }
         .none()
 }
 
-fun sumPrimesBelow(n: Int) = (2..n).filter(::isPrime).sum()
+fun sumPrimesBelow(n: Long) = (2L..n).filter(::isPrime).sum()
 
-assert(sumPrimesBelow(10) == 17)
+assert(sumPrimesBelow(10L) == 17L)
 
-println(sumPrimesBelow(2_000_000))
+sumPrimesBelow(2_000_000L)
+        .also { assert(it == 142913828922L) }
